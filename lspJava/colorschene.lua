@@ -10,24 +10,38 @@
   --    end,
   --  },
   --}
-  
-    return {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      style = "moon", -- ou "night", "moon", "day"
-      transparent = false,
-      styles = {
-        sidebars = "dark",
-        floats = "dark",
+
+ return {
+    {
+      "mcchrish/zenbones.nvim", -- nome correto do repositório
+      lazy = false,
+      priority = 1000,
+      dependencies = {
+        "rktjmp/lush.nvim", -- dependência obrigatória
       },
+      config = function()
+        vim.cmd.colorscheme("zenbones") -- pode trocar por 'neobones', 'forestbones', etc.
+      end,
     },
-    config = function(_, opts)
-      require("tokyonight").setup(opts)
-      vim.cmd.colorscheme("tokyonight")
-    end,
   }
+
+  --   return {
+ --   "folke/tokyonight.nvim",
+ --   lazy = false,
+ --   priority = 1000,
+ --   opts = {
+ --     style = "moon", -- ou "night", "moon", "day"
+ --     transparent = false,
+ --     styles = {
+ --       sidebars = "dark",
+ --       floats = "dark",
+ --     },
+ --   },
+ --   config = function(_, opts)
+ --     require("tokyonight").setup(opts)
+ --     vim.cmd.colorscheme("tokyonight")
+ --   end,
+ -- }
   
   --return {
   --  {
