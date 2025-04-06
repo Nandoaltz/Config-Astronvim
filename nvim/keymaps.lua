@@ -1,7 +1,12 @@
--- keymaps.lua
+-- Mapeia atalhos para gerenciar sessões com persistence.nvim
 
-vim.keymap.set("n", "<leader>qs", require("persistence").load, { desc = "Restore Session" })
-vim.keymap.set("n", "<leader>ql", function()
+-- Restaurar sessão atual
+vim.keymap.set("n", "<leader>ss", require("persistence").load, { desc = "Restore Session" })
+
+-- Restaurar última sessão
+vim.keymap.set("n", "<leader>sl", function()
   require("persistence").load({ last = true })
 end, { desc = "Restore Last Session" })
-vim.keymap.set("n", "<leader>qd", require("persistence").stop, { desc = "Don't Save Current Session" })
+
+-- Não salvar a sessão atual
+vim.keymap.set("n", "<leader>sd", require("persistence").stop, { desc = "Don't Save Current Session" })
