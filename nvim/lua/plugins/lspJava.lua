@@ -1,54 +1,49 @@
 return {
-    {
-      "mfussenegger/nvim-jdtls",
-      ft = { "java" },
-      config = function()
-        local jdtls = require("jdtls")
-        local mason_registry = require("mason-registry")
-        local jdtls_path = mason_registry.get_package("jdtls"):get_install_path()
-  
-        -- Encontrar o .jar do launcher (nome varia com a versão)
-        local launcher_jar = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
-  
-        -- Detecta o sistema operacional
-        local os_config
-        if vim.fn.has("mac") == 1 then
-          os_config = "config_mac"
-        elseif vim.fn.has("unix") == 1 then
-          os_config = "config_linux"
-        else
-          os_config = "config_win"
-        end
-  
-        local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-        local workspace_dir = vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. project_name
-  
-        local config = {
-          cmd = {
-            "java",
-            "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-            "-Dosgi.bundles.defaultStartLevel=4",
-            "-Declipse.product=org.eclipse.jdt.ls.core.product",
-            "-Dlog.protocol=true",
-            "-Dlog.level=ALL",
-            "-Xms1g",
-            "--add-modules=ALL-SYSTEM",
-            "--add-opens", "java.base/java.util=ALL-UNNAMED",
-            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-            "-jar", launcher_jar,
-            "-configuration", jdtls_path .. "/" .. os_config,
-            "-data", workspace_dir,
-          },
-  
-          root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }),
-  
-          settings = {
-            java = {},
-          },
-        }
-  
-        jdtls.start_or_attach(config)
-      end,
+  {
+    "nvim-java/nvim-java",
+    dependencies = {
+      "nvim-java/lua-async-await",
+      "nvim-java/nvim-java-refactor",
+      "nvim-java/nvim-java-core",
+      "nvim-java/nvim-java-test",
+      "nvim-java/nvim-java-dap",
+      "MunifTanjim/nui.nvim",
+      "neovim/nvim-lspconfig",
+      "mfussenegger/nvim-dap",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
     },
-  }
-  
+    config = function()
+      require("java").setup({
+        root_markers = {
+          "settings.gradle",
+          "settings.gradle.kts",
+          "pom.xml",
+          "build.gradle",
+          "mvnw",
+          "gradlew",
+          "build.gradle",
+          "build.gradle.kts",
+          ".git",
+        },
+        jdtls = { version = "v1.43.0" },
+        lombok = { version = "nightly" },
+        java_test = { enable = true, version = "0.40.1" },
+        java_debug_adapter = { enable = true, version = "0.58.1" },
+        spring_boot_tools = { enable = true, version = "1.59.0" }, --atualizado
+        jdk = { auto_install = true, version = "17.0.2" },
+        notifications = { dap = true },
+        verification = {
+          invalid_order = true,
+          duplicate_setup_calls = true,
+          invalid_mason_registry = false,
+        },
+        mason = {
+          registries = {
+            "github:nvim-java/mason-registry",
+          },
+        },
+      })
+    end,
+  },
+}
