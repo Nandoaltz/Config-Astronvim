@@ -41,10 +41,10 @@ return {
       -- Botões do menu
         dashboard.section.buttons.val = {
         dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("f", "󰈞  Find file", ":Telescope find_files<CR>"),
-        dashboard.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
+        dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
+        dashboard.button("r", "󰝰  Recent files", ":Telescope oldfiles<CR>"),
         dashboard.button("s", "  Restore Session", [[:lua require("persistence").load() <cr>]]),
-        dashboard.button("q", "󰗼  Quit", ":qa<CR>"),
+        dashboard.button("q", "  Quit", ":qa<CR>"),
       }
   
     -- Esconde a statusline na tela do Alpha
