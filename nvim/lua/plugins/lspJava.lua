@@ -1,49 +1,39 @@
 return {
-  {
-    "nvim-java/nvim-java",
-    dependencies = {
-      "nvim-java/lua-async-await",
-      "nvim-java/nvim-java-refactor",
-      "nvim-java/nvim-java-core",
-      "nvim-java/nvim-java-test",
-      "nvim-java/nvim-java-dap",
-      "MunifTanjim/nui.nvim",
-      "neovim/nvim-lspconfig",
-      "mfussenegger/nvim-dap",
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
-    config = function()
-      require("java").setup({
-        root_markers = {
-          "settings.gradle",
-          "settings.gradle.kts",
-          "pom.xml",
-          "build.gradle",
-          "mvnw",
-          "gradlew",
-          "build.gradle",
-          "build.gradle.kts",
-          ".git",
-        },
-        jdtls = { version = "v1.43.0" },
-        lombok = { version = "nightly" },
-        java_test = { enable = true, version = "0.40.1" },
-        java_debug_adapter = { enable = true, version = "0.58.1" },
-        spring_boot_tools = { enable = true, version = "1.59.0" }, --atualizado
-        jdk = { auto_install = true, version = "17.0.2" },
-        notifications = { dap = true },
-        verification = {
-          invalid_order = true,
-          duplicate_setup_calls = true,
-          invalid_mason_registry = false,
-        },
-        mason = {
-          registries = {
-            "github:nvim-java/mason-registry",
+  "mfussenegger/nvim-jdtls",
+  ft = { "java" },
+  dependencies = {
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+  },
+  config = function()
+    local jdtls = require("jdtls")
+
+    -- Caminhos
+    local home = os.getenv("HOME")
+    local mason_path = home .. "/.local/share/nvim/mason/packages/jdtls"
+    local workspace_dir = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+
+    local config = {
+      cmd = {
+        mason_path .. "/bin/jdtls",
+        "-data", workspace_dir,
+      },
+      root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }),
+      settings = {
+        java = {
+          signatureHelp = { enabled = true },
+          contentProvider = { preferred = "fernflower" },
+          format = {
+            enabled = true,
           },
         },
-      })
-    end,
-  },
+      },
+      init_options = {
+        bundles = {},
+      },
+    }
+
+    jdtls.start_or_attach(config)
+  end,
 }
