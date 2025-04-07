@@ -46,25 +46,6 @@ return {
         dashboard.button("s", "  Restore Session", [[:lua require("persistence").load() <cr>]]),
         dashboard.button("q", "  Quit", ":qa<CR>"),
       }
-  
-    -- Esconde a statusline na tela do Alpha
-    vim.api.nvim_create_autocmd("FileType", {
-        pattern = "alpha",
-        callback = function()
-          vim.opt.laststatus = 0
-        end,
-      })
-  
-      -- Restaura a statusline ao sair do Alpha
-      vim.api.nvim_create_autocmd("BufUnload", {
-        pattern = "*",
-        callback = function()
-          if vim.bo.filetype == "alpha" then
-            vim.opt.laststatus =2
-          end
-        end,
-      })
-  
       return dashboard.config
     end,
   }
