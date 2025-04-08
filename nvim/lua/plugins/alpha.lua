@@ -38,6 +38,12 @@ return {
                         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣠⣤⣤⣶⣿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀",
                        
       }
+        dashboard.section.header.opts = {
+        position = "center",
+        hl = "AlphaHeader",
+      }
+      --vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#ffffff" })
+      vim.cmd([[highlight AlphaHeader guifg=#ffffff]])
       -- Botões do menu
         dashboard.section.buttons.val = {
         dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
