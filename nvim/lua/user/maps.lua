@@ -29,7 +29,7 @@ map("n", "<C-l>", "<C-w>l")
 map("n", "<C-k>", "<C-w>k")                      
 map("n", "<C-j>", "<C-w>j")                      
 
--- 📏 Redimensionamento de janelas
+-- Redimensionamento de janelas
 map("n", "<C-Left>",  "<C-w><")                   -- Diminui largura
 map("n", "<C-Right>", "<C-w>>")                   -- Aumenta largura
 map("n", "<C-Up>",    "<C-w>+")                   -- Aumenta altura
