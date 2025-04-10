@@ -23,8 +23,8 @@ theme.command = {
 theme.normal.a.bg = '#c24040'
 theme.normal.z.bg = '#c24040'
 
-theme.insert.a.bg = '#c24040' -- cor de fundo da seção 'a' em modo insert
-theme.visual.a.bg = '#c24040' -- cor de fundo da seção 'a' em modo visual
+theme.insert.a.bg = '#c24040'
+theme.visual.a.bg = '#c24040' 
 theme.replace.a.bg = '#c24040'
 
         require('lualine').setup {
