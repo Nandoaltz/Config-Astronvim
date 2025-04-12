@@ -34,7 +34,7 @@ theme.replace.a.bg = '#c24040'
               component_separators = { left = '', right = ''},
               section_separators = { left = '', right = ''},
               disabled_filetypes = {
-                statusline = { "NvimTree", "alpha" },
+                statusline = { "neo-tree", "alpha" },
                 winbar = {},
               },
               ignore_focus = {},
