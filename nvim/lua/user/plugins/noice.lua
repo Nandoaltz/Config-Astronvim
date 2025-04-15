@@ -14,9 +14,16 @@ return {
       {
         filter = {
           event = "msg_show",
-          find = "deprecated",
+          find = "deprecated"
         },
         opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          find = "written"
+        },
+        opts = {skip = true},
       },
     },
   },
