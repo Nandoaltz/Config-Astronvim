@@ -1,45 +1,50 @@
 return {
     "williamboman/mason.nvim",
     dependencies = {
-        "williamboman/mason-lspconfig.nvim",
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        "williamboman/mason-lspconfig.nvim", -- Plugin para integrar Mason com LSPConfig
+        "WhoIsSethDaniel/mason-tool-installer.nvim", -- Plugin para instalar ferramentas extras (formatadores, linters)
     },
     config = function()
-        -- Inicializa o Mason
+        -- Inicializa o Mason (gerenciador de LSPs, DAPs, linters e formatadores)
         require("mason").setup()
 
-        -- Configura o mason-lspconfig para instalar automaticamente LSPs
-        require("mason-lspconfig").setup({
-            automatic_installation = true,
+        -- Requer o módulo mason-lspconfig apenas uma vez
+        local mason_lspconfig = require("mason-lspconfig")
+
+        -- Configura o mason-lspconfig para instalar automaticamente servidores LSP
+        mason_lspconfig.setup({
+            automatic_installation = true, -- Instala LSPs automaticamente ao detectar
             ensure_installed = {
-                "cssls",       -- CSS
-                "eslint",      -- ESLint
-                "html",        -- HTML
-                "jsonls",      -- JSON
-               -- "pyright",     -- Python
-                --"tailwindcss", -- Tailwind
-                -- "tsserver" removido
+                "cssls",   -- Servidor para CSS
+                "eslint",  -- Servidor para lint de JavaScript/TypeScript
+                "html",    -- Servidor para HTML
+                "jsonls",  -- Servidor para JSON
+                -- "pyright",     -- Descomente se quiser Python
+                -- "tailwindcss", -- Descomente se quiser Tailwind
+                -- "tsserver",    -- Descomente se quiser TypeScript
             },
         })
 
-        -- Instala ferramentas como formatadores e linters
+        -- Instala ferramentas adicionais como formatadores e linters
         require("mason-tool-installer").setup({
             ensure_installed = {
-                --"prettier",    -- formatação geral
-                "stylua",      -- formatação para Lua
-               -- "isort",       -- ordenador de imports para Python
-                --"black",       -- formatador Python
-                --"eslint_d",    -- ESLint versão rápida
-                -- "typescript-language-server" removido
+                "stylua", -- Formatador para arquivos Lua
+                -- "prettier", -- Formatação geral para frontend
+                -- "isort",    -- Organizador de imports Python
+                -- "black",    -- Formatador de código Python
+                -- "eslint_d", -- ESLint rápido
             },
         })
 
-        -- Configura automaticamente os LSPs instalados
+        -- Carrega o módulo lspconfig para configurar os LSPs
         local lspconfig = require("lspconfig")
-        require("mason-lspconfig").setup_handlers {
+
+        -- Configura automaticamente cada servidor LSP instalado
+        mason_lspconfig.setup_handlers({
             function(server_name)
-                lspconfig[server_name].setup {}
+                -- Para cada servidor instalado, faz a configuração padrão
+                lspconfig[server_name].setup({})
             end,
-        }
+        })
     end,
 }
