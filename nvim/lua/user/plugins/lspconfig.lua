@@ -2,6 +2,8 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
         "hrsh7th/cmp-nvim-lsp",
         { "folke/neodev.nvim", opts = {} },
     },
@@ -32,61 +34,14 @@ return {
                 })
             end,
 
-            ["cssls"] = function()
-                nvim_lsp["cssls"].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
-
+            -- Pode colocar servidores com configurações específicas também aqui
             ["gopls"] = function()
                 nvim_lsp["gopls"].setup({
                     on_attach = on_attach,
                     capabilities = capabilities,
                 })
             end,
-
-            ["jdtls"] = function()
-                nvim_lsp["jdtls"].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
-
-            ["tailwindcss"] = function()
-                nvim_lsp["tailwindcss"].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
-
-            ["html"] = function()
-                nvim_lsp["html"].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
-
-            ["jsonls"] = function()
-                nvim_lsp["jsonls"].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
-
-            ["eslint"] = function()
-                nvim_lsp["eslint"].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
-
-            ["pyright"] = function()
-                nvim_lsp["pyright"].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
+            -- etc
         })
     end,
 }
