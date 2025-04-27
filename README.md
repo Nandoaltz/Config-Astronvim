@@ -11,6 +11,6 @@
 ### Instalação
 ```
 git clone https://github.com/Nandoaltz/Meu_Neovim.git
-mv nvim ~/.config
+mv Meu_Neovim/nvim ~/.config
 nvim
 ```
