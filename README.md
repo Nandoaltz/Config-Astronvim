@@ -2,7 +2,7 @@
 
 ![Tela inicial](nvim/tela-inicial.png)
 
-#Instalação
+### Instalação
 ```
 git clone https://github.com/Nandoaltz/Meu_Neovim.git
 mv ~/.config
