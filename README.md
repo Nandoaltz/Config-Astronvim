@@ -2,6 +2,8 @@
 
 ![Tela inicial](nvim/tela-inicial.png)
 
-´´´
-codigo
-´´
+```
+git status
+git add
+git commit
+```
