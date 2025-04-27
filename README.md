@@ -3,7 +3,7 @@
 ![Tela inicial](nvim/tela-inicial.png)
 
 ```
-git clone 
-git add
-git commit
+git clone https://github.com/Nandoaltz/Meu_Neovim.git
+mv ~/.config
+nvim
 ```
