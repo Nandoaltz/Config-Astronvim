@@ -3,7 +3,7 @@
 ![Tela inicial](nvim/tela-inicial.png)
 
 ```
-git status
+git clone 
 git add
 git commit
 ```
