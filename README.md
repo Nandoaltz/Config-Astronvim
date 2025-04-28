@@ -4,9 +4,11 @@
 
 ### Pré Requisitos
 
-> Nerd Fonts: https://www.nerdfonts.com/
+> Nerd Fonts:
+> https://www.nerdfonts.com/
 > 
-> Versão mais atual Neovim: https://neovim.io/
+> Versão mais atual Neovim:
+> https://neovim.io/
 
 ### Instalação
 ```
