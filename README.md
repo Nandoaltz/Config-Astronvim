@@ -14,5 +14,6 @@
 ```
 git clone https://github.com/Nandoaltz/Meu_Neovim.git
 mv Meu_Neovim/nvim ~/.config
+rm -rf Meu_Neovim
 nvim
 ```
