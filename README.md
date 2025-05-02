@@ -1,7 +1,7 @@
 ## Projeto pessoal Neovim Blood
 
 ![Tela inicial](nvim/tela-inicial.png)
-
+![Tela inicial](nvim/KATACANA.png)
 
 ### Pré Requisitos
 
