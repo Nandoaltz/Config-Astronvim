@@ -2,6 +2,7 @@
 
 ![Tela inicial](nvim/tela-inicial.png)
 
+![Tela inicial](nvim/KATAKANA.png)
 ### Pré Requisitos
 
 > Nerd Fonts:
