@@ -1,7 +1,8 @@
 ## Projeto pessoal Neovim Blood
 
+
 ![Tela inicial](nvim/KATACANA.png)
-![Tela inicial](nvim/KATACANA.png)
+
 ### Pré Requisitos
 
 > Nerd Fonts:
