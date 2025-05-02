@@ -1,41 +1,49 @@
 vim.api.nvim_create_autocmd("User", {
   pattern = "AlphaReady",
   callback = function()
-    vim.cmd [[ set laststatus=0 | set showtabline=0 ]]
+    vim.opt.laststatus = 0
+    vim.opt.showtabline = 0
     vim.opt_local.fillchars:append("eob: ")
   end,
 })
-vim.api.nvim_create_autocmd("BufUnload", {
-  buffer = 0,
+
+vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
-    vim.cmd [[ set laststatus=2 | set showtabline=2 ]]
+    if vim.bo.filetype ~= "alpha" then
+      vim.opt.laststatus = 2
+      vim.opt.showtabline = 2
+    end
   end,
 })
+
 return {
   "goolord/alpha-nvim",
   opts = function(_, _)
       local dashboard = require("alpha.themes.dashboard")
-
+      local startify = require("alpha.themes.startify")
       -- Logo com diferentes cores por linha
       dashboard.section.header.val = {
-          [[                             ]],
-          [[     ▐ ▄ ▄▄▄ .       ▌ ▐·▪  • ▌ ▄ ·.  ]],
-          [[    •█▌▐█▀▄.▀·▪     ▪█·█▌██ ·██ ▐███▪ ]],
-          [[    ▐█▐▐▌▐▀▀▪▄ ▄█▀▄ ▐█▐█•▐█·▐█ ▌▐▌▐█· ]],
-          [[    ██▐█▌▐█▄▄▌▐█▌.▐▌ ███ ▐█▌██ ██▌▐█▌ ]],
-          [[    ▀▀ █▪ ▀▀▀  ▀█▄▀▪. ▀  ▀▀▀▀▀  █▪▀▀▀ ]],
-          [[                                   ]],
-          [[ ▄▄▄▄    ██▓     ▒█████   ▒█████  ▓█████▄ ]],
-          [[▓█████▄ ▓██▒    ▒██▒  ██▒▒██▒  ██▒▒██▀ ██▌]],
-          [[▒██▒ ▄██▒██░    ▒██░  ██▒▒██░  ██▒░██   █▌]],
-          [[▒██░█▀  ▒██░    ▒██   ██░▒██   ██░░▓█▄   ▌]],
-          [[░▓█  ▀█▓░██████▒░ ████▓▒░░ ████▓▒░░▒████▓ ]],
-          [[░▒▓███▀▒░ ▒░▓  ░░ ▒░▒░▒░ ░ ▒░▒░▒░  ▒▒▓  ▒ ]],
-          [[▒░▒   ░ ░ ░ ▒  ░  ░ ▒ ▒░   ░ ▒ ▒░  ░ ▒  ▒ ]],
-          [[ ░    ░   ░ ░   ░ ░ ░ ▒  ░ ░ ░ ▒   ░ ░  ░ ]],
-          [[ ░          ░  ░    ░ ░      ░ ░     ░    ]],
-          [[      ░                            ░      ]],
-      }
+    [[                                                                       ]],
+	[[  ██████   █████                   █████   █████  ███                  ]],
+	[[ ░░██████ ░░███                   ░░███   ░░███  ░░░                   ]],
+	[[  ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████   ]],
+	[[  ░███░░███░███  ███░░███ ███░░███ ░███    ░███ ░░███ ░░███░░███░░███  ]],
+	[[  ░███ ░░██████ ░███████ ░███ ░███ ░░███   ███   ░███  ░███ ░███ ░███  ]],
+	[[  ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███  ]],
+	[[  █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████ ]],
+	[[ ░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░  ]],
+	[[                                                                       ]],
+                                                                       
+[[]],
+[[             ##   #       # #       # #       #           ]], 
+[[           ##   #  #     #  #       # #       #   ####### ]], 
+[[         ## #    #      #          #         #       #    ]], 
+[[       ##   #         ##          #         #        #    ]], 
+[[            #       ##          ##        ##         #    ]], 
+[[            #     ##          ##        ##           #    ]], 
+[[            #   ##          ##        ##        ##########]], 
+
+        }
 
       -- Definindo as cores manualmente para cada linha (evita múltiplos destaques)
       vim.cmd("highlight AlphaHeader1 guifg=#ec0e04") -- Linha 1: Vermelho
@@ -61,7 +69,7 @@ return {
       }
 
       -- Rodapé
-      dashboard.section.footer.val = { "  Nando: Neovim Blood" }
+      dashboard.section.footer.val = { "  Nando: Neovim ブロオド " }
       dashboard.section.footer.opts = {
           position = "center",
           hl = "Comment",
