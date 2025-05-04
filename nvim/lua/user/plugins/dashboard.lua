@@ -3,6 +3,7 @@ vim.api.nvim_create_autocmd("User", {
   callback = function()
     vim.opt.laststatus = 0
     vim.opt.showtabline = 0
+    vim.opt.ruler = false
     vim.opt_local.fillchars:append("eob: ")
   end,
 })
@@ -11,6 +12,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     if vim.bo.filetype ~= "alpha" then
       vim.opt.laststatus = 2
+      vim.opt.ruler = true
       vim.opt.showtabline = 2
     end
   end,
@@ -32,18 +34,17 @@ return {
 	[[  ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███  ]],
 	[[  █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████ ]],
 	[[ ░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░  ]],
-	[[                                                                       ]],
-                                                                       
+	[[                                                                       ]],                                                                    
 [[]],
-[[             ##   #       # #       # #       #           ]], 
-[[           ##   #  #     #  #       # #       #   ####### ]], 
-[[         ## #    #      #          #         #       #    ]], 
-[[       ##   #         ##          #         #        #    ]], 
-[[            #       ##          ##        ##         #    ]], 
-[[            #     ##          ##        ##           #    ]], 
-[[            #   ##          ##        ##        ##########]], 
-
-        }
+  [[                     # #                     #     #                   ]],
+  [[            ######### # #  #########   #########   #    # #           ]],
+  [[                   #       #       #        ##     # #   # #          ]],
+  [[                  #        #       #      ## #     #  ##                ]],
+  [[                ##         #       #    ##   #     #    ##               ]],
+  [[              ##           #########         #     #                  ]],
+  [[            ##             #       #       ###     #                   ]],
+     
+}
 
       -- Definindo as cores manualmente para cada linha (evita múltiplos destaques)
       vim.cmd("highlight AlphaHeader1 guifg=#ec0e04") -- Linha 1: Vermelho
