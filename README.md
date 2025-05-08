@@ -25,6 +25,7 @@ nvim
 > 
 > Versão mais atual Neovim:
 > https://neovim.io/
+> 
 > Verificar se existe uma pasta .config dentro do diretório pessoal
 
 ### Instalação Windows
